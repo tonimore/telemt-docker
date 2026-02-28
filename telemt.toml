@@ -1,0 +1,39 @@
+show_link = ["docker"]
+
+[general]
+prefer_ipv6 = false
+fast_mode = true
+use_middle_proxy = false
+
+[general.modes]
+classic = false
+secure = false
+tls = true
+
+[server]
+port = 3443
+listen_addr_ipv4 = "0.0.0.0"
+listen_addr_ipv6 = "::"
+# metrics_port = 9090
+# metrics_whitelist = ["127.0.0.1", "::1"]
+
+[censorship]
+tls_domain = "avito.ru"
+mask = true
+mask_port = 443
+fake_cert_len = 2048
+
+[access]
+replay_check_len = 65536
+ignore_time_skew = false
+
+# python3 -c 'import os; print(os.urandom(16).hex())' or openssl rand -hex 16
+[access.users]
+docker = "81fcb8dd5aced8c8983813ef2c1aea99"
+
+
+[[upstreams]]
+type = "direct"
+enabled = true
+weight = 10
+
